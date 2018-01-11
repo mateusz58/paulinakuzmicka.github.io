@@ -139,7 +139,11 @@ $(document).ready(function() {
         title: taskTitle,
         content: taskContent
       }),
-      success: getAllTasks
+      complete: function(data) {
+        if(data.status === 200) {
+          getAllTasks();
+        }
+      }
     });
   }
 
@@ -186,10 +190,10 @@ $(document).ready(function() {
         description: relatedTask.content,
         listId: selectedListId
       }),
-      success: function(data) {
+		success: function(data) {
         console.log('Card created - ' + data.shortUrl);
         alert('Card created - ' + data.shortUrl);
-      }
+      }	
     });
   }
 
